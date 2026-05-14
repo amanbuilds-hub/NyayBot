@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #1a2744;
+  --navy-light: #2d3f6b;
+  --saffron: #FF9933;
+  --saffron-light: #FFF3E0;
+  --green-success: #2E7D32;
+  --red-danger: #C62828;
+  --background: #F8F7F2;
+  --card: #FFFFFF;
+  --text-primary: #1a2744;
+  --text-secondary: #5c6782;
+  --border: #E2E0D8;
+}
+
+body {
+  font-family: 'Noto Sans', 'Noto Sans Devanagari', sans-serif;
+  background-color: var(--background);
+  color: var(--text-primary);
+}
