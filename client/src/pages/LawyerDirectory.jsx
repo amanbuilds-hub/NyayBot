@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+
 export default function LawyerDirectory() {
   const [lawyers, setLawyers] = useState([]);
   const [total, setTotal] = useState(0);
@@ -37,7 +39,7 @@ export default function LawyerDirectory() {
       if (filters.type && filters.type !== 'All') params.append('type', filters.type);
       if (filters.search) params.append('search', filters.search);
 
-      const response = await axios.get(`http://localhost:5001/api/lawyers?${params.toString()}`);
+      const response = await axios.get(`${API_URL}/api/lawyers?${params.toString()}`);
       
       const colorPalette = ["#1a2744", "#2E7D32", "#5c6782", "#7B1FA2", "#E65100", "#1565C0"];
       const enrichedLawyers = response.data.lawyers.map((l, i) => ({

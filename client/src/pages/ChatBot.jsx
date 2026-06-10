@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+
 export default function ChatBot() {
   const [messages, setMessages] = useState([
     { role: 'bot', content: "Hello! I am NyayBot. I can provide you with information regarding bail, lawyers, and your legal rights. What would you like to know?" }
@@ -35,7 +37,7 @@ export default function ChatBot() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5001/api/chat', {
+      const response = await axios.post(`${API_URL}/api/chat`, {
         message: text,
         language: 'english',
         history: messages.map(m => ({ role: m.role === 'bot' ? 'assistant' : 'user', content: m.content }))

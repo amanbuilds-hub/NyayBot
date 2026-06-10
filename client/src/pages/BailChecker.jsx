@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+
 export default function BailChecker() {
   const [formData, setFormData] = useState({
     name: '',
@@ -22,7 +24,7 @@ export default function BailChecker() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:5001/api/bail-check', formData);
+      const response = await axios.post(`${API_URL}/api/bail-check`, formData);
       setResult(response.data);
     } catch (error) {
       console.error(error);
