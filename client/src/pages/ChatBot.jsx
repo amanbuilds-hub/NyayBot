@@ -35,7 +35,7 @@ export default function ChatBot() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/chat', {
+      const response = await axios.post('http://localhost:5001/api/chat', {
         message: text,
         language: 'english',
         history: messages.map(m => ({ role: m.role === 'bot' ? 'assistant' : 'user', content: m.content }))

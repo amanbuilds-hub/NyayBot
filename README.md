@@ -4,7 +4,7 @@
 
 ## Features
 
-- 💬 **LegalBot**: An AI-powered legal assistant utilizing OpenRouter (Gemma/Llama models) to provide compassionate, easy-to-understand legal information regarding bail procedures, fundamental rights, and court processes.
+- 💬 **LegalBot**: An AI-powered legal assistant utilizing Grok AI (Llama models) to provide compassionate, easy-to-understand legal information regarding bail procedures, fundamental rights, and court processes.
 - 🧮 **Bail Eligibility Checker**: A built-in calculator based on **Section 479 of the Bharatiya Nagarik Suraksha Sanhita (BNSS) 2023**. It checks bail eligibility depending on the arrest date, maximum sentence, and offense history.
 - 👥 **Lawyer Directory**: A searchable database of lawyers, filtered by state, language, and service type (NALSA, Pro Bono, Tele-Law).
 - 🌐 **Multi-language Support**: Interface available in multiple regional languages to cater to diverse users.
@@ -13,7 +13,7 @@
 
 - **Frontend**: React.js, Vite, Tailwind CSS, React Router
 - **Backend**: Node.js, Express.js, Mongoose (MongoDB)
-- **AI Integration**: OpenRouter API
+- **AI Integration**: Grok AI API
 - **Styling**: Vanilla CSS Variables + Tailwind Utility Classes
 
 ## Project Structure
@@ -43,7 +43,7 @@ nyaybot/
 
 - [Node.js](https://nodejs.org/) (v16+ recommended)
 - [MongoDB](https://www.mongodb.com/) (Local instance or MongoDB Atlas)
-- [OpenRouter](https://openrouter.ai/) Account and API Key
+- [xAI Grok](https://x.ai/) Account and API Key
 
 ### Installation
 
@@ -60,7 +60,8 @@ nyaybot/
    ```
    - Make sure your `.env` file in the `server` directory has the correct API keys:
      ```env
-     OPENROUTER_API_KEY=your_actual_key_here
+     GROK_API_KEY=your_actual_key_here
+     GROK_MODEL=meta-llama/llama-4-scout-17b-16e-instruct
      MONGO_URI=your_actual_mongodb_uri_here
      JWT_SECRET=nyaybot_jwt_secret_2024
      PORT=5000
@@ -86,3 +87,4 @@ nyaybot/
 
 ## Disclaimer
 NyayBot provides AI-generated information and preliminary eligibility checks. It does not constitute formal legal advice. For definitive legal strategy and representation, users are strongly encouraged to contact the **NALSA Helpline at 15100**.
+

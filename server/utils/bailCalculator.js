@@ -17,7 +17,25 @@ function calculateBailEligibility(params) {
     "IPC 376": Infinity, "BNS 64": Infinity
   };
 
-  const maxMonths = offenceMap[section];
+  // Normalize user input (e.g., "420", "ipc 420", "ipc420", "IPC  420")
+  let normalizedSection = (section || "").toString().trim().toUpperCase().replace(/\s+/g, ' ');
+
+  if (/^\d+$/.test(normalizedSection)) {
+    // If input is purely numeric, try matching with "IPC " or "BNS " prefix
+    if (offenceMap[`IPC ${normalizedSection}`] !== undefined) {
+      normalizedSection = `IPC ${normalizedSection}`;
+    } else if (offenceMap[`BNS ${normalizedSection}`] !== undefined) {
+      normalizedSection = `BNS ${normalizedSection}`;
+    }
+  } else {
+    // If input is like "IPC420" (no space), normalize it to "IPC 420"
+    const match = normalizedSection.match(/^(IPC|BNS)\s*(\d+)$/);
+    if (match) {
+      normalizedSection = `${match[1]} ${match[2]}`;
+    }
+  }
+
+  const maxMonths = offenceMap[normalizedSection];
 
   if (maxMonths === undefined) {
     return {
@@ -54,7 +72,8 @@ function calculateBailEligibility(params) {
     monthsRequired,
     monthsRemaining,
     maxSentenceYears: maxMonths / 12,
-    section: "Section 479 BNSS 2023"
+    section: "Section 479 BNSS 2023",
+    matchedSection: normalizedSection
   };
 }
 

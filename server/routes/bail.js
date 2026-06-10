@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
   res.json({
     ...result,
     name,
-    section: section,
+    section: result.matchedSection || section,
     state,
     disclaimer: "This is a preliminary calculator. The final court decision may vary. Please consult a lawyer.",
     nalsa: "NALSA Helpline: 15100"

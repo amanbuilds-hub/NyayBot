@@ -1,7 +1,11 @@
 const express = require('express');
-const axios = require('axios');
 const router = express.Router();
+const Groq = require('groq-sdk');
 const { LEGALBOT_PROMPT } = require('../prompts/legalbot');
+
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY || process.env.GROK_API_KEY,
+});
 
 router.post('/', async (req, res) => {
   const { message, language = 'english', history = [] } = req.body;
@@ -14,28 +18,17 @@ router.post('/', async (req, res) => {
   ];
 
   try {
-    const response = await axios.post(
-      'https://openrouter.ai/api/v1/chat/completions',
-      {
-        model: "openrouter/free",
-        messages,
-        max_tokens: 600,
-        temperature: 0.3
-      },
-      {
-        headers: {
-          'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          'Content-Type': 'application/json',
-          'HTTP-Referer': process.env.CLIENT_URL || 'http://localhost:5173',
-          'X-Title': 'NyayBot'
-        }
-      }
-    );
+    const chatCompletion = await groq.chat.completions.create({
+      messages: messages,
+      model: process.env.GROQ_MODEL || process.env.GROK_MODEL || "llama-3.3-70b-versatile",
+      temperature: 0.3,
+      max_tokens: 600,
+    });
 
-    const reply = response.data.choices[0].message.content;
+    const reply = chatCompletion.choices[0]?.message?.content || "";
     res.json({ reply });
   } catch (error) {
-    console.error('Chat API Error:', error.response?.data || error.message);
+    console.error('Chat API Error:', error.message);
     res.status(500).json({ reply: "I apologize, the server is currently busy. Please call NALSA helpline at 15100." });
   }
 });

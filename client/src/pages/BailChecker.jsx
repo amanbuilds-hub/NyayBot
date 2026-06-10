@@ -22,7 +22,7 @@ export default function BailChecker() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/bail-check', formData);
+      const response = await axios.post('http://localhost:5001/api/bail-check', formData);
       setResult(response.data);
     } catch (error) {
       console.error(error);
