@@ -17,7 +17,8 @@ app.use(cors({
       !origin ||
       allowedOrigins.includes(origin) ||
       /^https?:\/\/localhost:\d+$/.test(origin) ||
-      /^https?:\/\/127\.0\.0\.1:\d+$/.test(origin)
+      /^https?:\/\/127\.0\.0\.1:\d+$/.test(origin) ||
+      /^https:\/\/nyaybot-.*\.vercel\.app$/.test(origin)
     ) {
       callback(null, true);
     } else {
