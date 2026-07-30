@@ -7,9 +7,9 @@ import LawyerDirectory from './pages/LawyerDirectory';
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex h-screen overflow-hidden bg-[var(--background)]">
+      <div className="flex h-screen overflow-hidden bg-slate-950 text-slate-100">
         <Sidebar />
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto bg-slate-950">
           <Routes>
             <Route path="/" element={<Navigate to="/chat" replace />} />
             <Route path="/chat" element={<ChatBot />} />

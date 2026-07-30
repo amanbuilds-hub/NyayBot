@@ -10,7 +10,12 @@ export default {
         navy: '#1a2744',
         'navy-light': '#2d3f6b',
         saffron: '#FF9933',
-        'saffron-light': '#FFF3E0'
+        'saffron-light': '#FFF3E0',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        border: 'var(--border)',
+        background: 'var(--background)',
+        card: 'var(--card)'
       }
     },
   },

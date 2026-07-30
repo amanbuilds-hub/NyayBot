@@ -10,23 +10,23 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-[260px] bg-navy flex flex-col justify-between h-full text-white hidden md:flex">
+    <aside className="w-[260px] bg-slate-950 flex flex-col justify-between h-full text-slate-100 hidden md:flex border-r border-slate-800">
       <div>
-        <div className="p-6 flex items-center gap-3">
+        <div className="p-6 flex items-center gap-3 border-b border-slate-800">
           <span className="text-2xl">⚖️</span>
           <h1 className="text-xl font-bold">NyayBot</h1>
         </div>
-        <nav className="mt-4 flex flex-col gap-1">
+        <nav className="mt-4 flex flex-col gap-1 px-2">
           {links.map((link) => {
             const isActive = location.pathname === link.path;
             return (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`h-12 flex items-center px-6 gap-3 text-[15px] transition-colors ${
-                  isActive 
-                    ? 'border-l-4 border-saffron bg-saffron-light text-navy font-medium' 
-                    : 'text-white hover:bg-navy-light border-l-4 border-transparent'
+                className={`h-12 flex items-center px-6 gap-3 text-[15px] transition-colors rounded-r-full ${
+                  isActive
+                    ? 'border-l-4 border-saffron bg-slate-800 text-white font-medium shadow-inner'
+                    : 'text-slate-300 hover:bg-slate-800 border-l-4 border-transparent'
                 }`}
               >
                 <span>{link.icon}</span>
@@ -37,17 +37,17 @@ export default function Sidebar() {
         </nav>
       </div>
       
-      <div className="p-6">
-        <select className="w-full bg-navy-light text-white border border-gray-600 rounded-md p-2 mb-4 text-sm focus:outline-none" defaultValue="english">
-          <option value="english">English</option>
-          <option value="hindi">हिन्दी</option>
-          <option value="bengali">বাংলা</option>
-          <option value="tamil">தமிழ்</option>
-          <option value="telugu">తెలుగు</option>
-          <option value="marathi">मराठी</option>
+      <div className="p-6 border-t border-slate-800">
+        <select className="w-full bg-slate-900 text-slate-100 border border-slate-700 rounded-md p-2 mb-4 text-sm focus:outline-none focus:ring-2 focus:ring-saffron" defaultValue="english">
+          <option className="bg-slate-950 text-slate-100" value="english">English</option>
+          <option className="bg-slate-950 text-slate-100" value="hindi">हिन्दी</option>
+          <option className="bg-slate-950 text-slate-100" value="bengali">বাংলা</option>
+          <option className="bg-slate-950 text-slate-100" value="tamil">தமிழ்</option>
+          <option className="bg-slate-950 text-slate-100" value="telugu">తెలుగు</option>
+          <option className="bg-slate-950 text-slate-100" value="marathi">मराठी</option>
         </select>
         
-        <div className="bg-saffron text-navy font-bold text-xs rounded-full py-2 px-3 text-center">
+        <div className="bg-saffron text-navy font-bold text-xs rounded-full py-2 px-3 text-center shadow-sm">
           NALSA Helpline: 15100
         </div>
       </div>

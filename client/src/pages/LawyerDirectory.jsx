@@ -85,19 +85,19 @@ export default function LawyerDirectory() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-[var(--background)]">
-      <div className="sticky top-0 bg-white border-b border-border z-10 p-4 md:px-6 shadow-sm">
+    <div className="flex flex-col h-full bg-slate-950 text-slate-100">
+      <div className="sticky top-0 bg-slate-900 border-b border-slate-800 z-10 p-4 md:px-6 shadow-sm">
         <div className="max-w-6xl mx-auto space-y-4">
           <div className="flex flex-col md:flex-row gap-4">
             <input 
               type="text" 
               placeholder="Search lawyer or specialization..." 
-              className="flex-grow border border-border rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-navy"
+              className="flex-grow border border-slate-700 rounded-md px-4 py-2 bg-slate-950 text-slate-100 text-sm focus:outline-none focus:ring-1 focus:ring-saffron"
               value={filters.search}
               onChange={(e) => setFilters({...filters, search: e.target.value})}
             />
             <select 
-              className="border border-border rounded-md px-4 py-2 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-navy"
+              className="border border-slate-700 rounded-md px-4 py-2 text-sm bg-slate-950 text-slate-100 focus:outline-none focus:ring-1 focus:ring-saffron"
               value={filters.state}
               onChange={(e) => setFilters({...filters, state: e.target.value})}
             >
@@ -105,7 +105,7 @@ export default function LawyerDirectory() {
               {statesList.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
             <select 
-              className="border border-border rounded-md px-4 py-2 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-navy"
+              className="border border-slate-700 rounded-md px-4 py-2 text-sm bg-slate-950 text-slate-100 focus:outline-none focus:ring-1 focus:ring-saffron"
               value={filters.language}
               onChange={(e) => setFilters({...filters, language: e.target.value})}
             >
@@ -123,7 +123,7 @@ export default function LawyerDirectory() {
                   className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors border ${
                     filters.type === t 
                       ? 'bg-saffron text-navy border-saffron shadow-sm' 
-                      : 'bg-white text-text-secondary border-border hover:bg-gray-50'
+                      : 'bg-slate-900 text-slate-300 border-slate-700 hover:bg-slate-800'
                   }`}
                 >
                   {t}
@@ -142,22 +142,22 @@ export default function LawyerDirectory() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {isLoading ? (
                Array.from({ length: 6 }).map((_, i) => (
-                 <div key={i} className="bg-white rounded-xl border border-border p-5 h-64 animate-pulse">
+                 <div key={i} className="bg-slate-900 rounded-xl border border-slate-800 p-5 h-64 animate-pulse">
                    <div className="flex gap-4 mb-4">
-                     <div className="w-11 h-11 rounded-full bg-gray-200"></div>
+                     <div className="w-11 h-11 rounded-full bg-slate-700"></div>
                      <div className="flex-1">
-                       <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
-                       <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+                       <div className="h-4 bg-slate-700 rounded w-3/4 mb-2"></div>
+                       <div className="h-3 bg-slate-700 rounded w-1/2"></div>
                      </div>
                    </div>
                    <div className="space-y-3 mt-6">
-                     <div className="h-3 bg-gray-200 rounded w-full"></div>
-                     <div className="h-3 bg-gray-200 rounded w-5/6"></div>
+                     <div className="h-3 bg-slate-700 rounded w-full"></div>
+                     <div className="h-3 bg-slate-700 rounded w-5/6"></div>
                    </div>
                  </div>
                ))
             ) : lawyers.map((lawyer, i) => (
-              <div key={lawyer._id || i} className="bg-white rounded-xl border border-border p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
+              <div key={lawyer._id || i} className="bg-slate-900 rounded-xl border border-slate-800 p-5 shadow-sm hover:shadow-md transition-shadow flex flex-col h-full">
                 <div className="flex items-start gap-4 mb-4">
                   <div 
                     className="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-base shrink-0"
@@ -166,7 +166,7 @@ export default function LawyerDirectory() {
                     {getInitials(lawyer.name)}
                   </div>
                   <div className="flex-grow">
-                    <h3 className="font-bold text-navy text-base leading-tight mb-1">{lawyer.name}</h3>
+                    <h3 className="font-bold text-slate-100 text-base leading-tight mb-1">{lawyer.name}</h3>
                     <span className={`inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${getBadgeClass(lawyer.type)}`}>
                       {getTypeLabel(lawyer.type)}
                     </span>
@@ -176,27 +176,27 @@ export default function LawyerDirectory() {
                 <div className="space-y-3 mb-6 flex-grow">
                   <div className="flex flex-wrap gap-1">
                     {lawyer.languages.map((lang, idx) => (
-                      <span key={idx} className="bg-gray-100 border border-gray-200 text-gray-600 text-xs px-2 py-1 rounded-md">
+                      <span key={idx} className="bg-slate-800 border border-slate-700 text-slate-300 text-xs px-2 py-1 rounded-md">
                         {lang}
                       </span>
                     ))}
                   </div>
-                  <p className="text-[13px] text-text-secondary leading-snug">
-                    <span className="font-medium">Spec:</span> {lawyer.specialization.join(', ')}
+                  <p className="text-[13px] text-slate-300 leading-snug">
+                    <span className="font-medium text-slate-100">Spec:</span> {lawyer.specialization.join(', ')}
                   </p>
-                  <p className="text-[13px] text-text-secondary flex items-center gap-1">
-                    <span className="text-gray-400">📍</span> {lawyer.district}, {lawyer.state}
+                  <p className="text-[13px] text-slate-300 flex items-center gap-1">
+                    <span className="text-slate-400">📍</span> {lawyer.district}, {lawyer.state}
                   </p>
                   <p className="text-[13px] flex items-center gap-1.5 font-medium">
-                    <span className={`w-2 h-2 rounded-full ${lawyer.available ? 'bg-green-500' : 'bg-gray-400'}`}></span>
-                    <span className={lawyer.available ? 'text-green-700' : 'text-gray-500'}>
+                    <span className={`w-2 h-2 rounded-full ${lawyer.available ? 'bg-green-500' : 'bg-slate-600'}`}></span>
+                    <span className={lawyer.available ? 'text-green-400' : 'text-slate-400'}>
                       {lawyer.available ? 'Available' : 'Busy'}
                     </span>
                   </p>
                 </div>
 
-                <div className="border-t border-border pt-4 flex gap-3">
-                  <button className="flex-1 py-2 rounded-md border border-navy text-navy font-medium text-sm hover:bg-gray-50 transition-colors">
+                <div className="border-t border-slate-800 pt-4 flex gap-3">
+                  <button className="flex-1 py-2 rounded-md border border-slate-700 text-slate-100 font-medium text-sm hover:bg-slate-800 transition-colors">
                     Contact
                   </button>
                   <button className="flex-1 py-2 rounded-md bg-saffron text-navy font-medium text-sm shadow-sm hover:bg-orange-500 transition-colors">
@@ -209,10 +209,10 @@ export default function LawyerDirectory() {
           
           {!isLoading && lawyers.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-text-secondary">No lawyers found with these filters.</p>
+              <p className="text-slate-300">No lawyers found with these filters.</p>
               <button 
                 onClick={() => setFilters({search: '', state: '', language: '', type: 'All'})}
-                className="mt-4 text-navy font-medium underline"
+                className="mt-4 text-saffron font-medium underline"
               >
                 Clear filters
               </button>

@@ -35,40 +35,40 @@ export default function BailChecker() {
   };
 
   return (
-    <div className="p-4 md:p-8 max-w-6xl mx-auto">
+    <div className="p-4 md:p-8 max-w-6xl mx-auto bg-slate-950 min-h-screen text-slate-100">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="bg-white border border-border rounded-xl p-6 shadow-sm">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm">
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-navy">Bail Eligibility Check</h2>
-            <p className="text-text-secondary text-sm">Section 479 BNSS 2023</p>
+            <h2 className="text-2xl font-bold text-white">Bail Eligibility Check</h2>
+            <p className="text-slate-400 text-sm">Section 479 BNSS 2023</p>
           </div>
           
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-text-primary mb-1">Prisoner Name (optional)</label>
-              <input type="text" className="w-full border border-border rounded-md p-2 focus:ring-1 focus:ring-navy focus:outline-none" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+              <label className="block text-sm font-medium text-slate-200 mb-1">Prisoner Name (optional)</label>
+              <input type="text" className="w-full border border-slate-700 rounded-md p-2 bg-slate-950 text-slate-100 focus:ring-1 focus:ring-saffron focus:outline-none" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-text-primary mb-1">Arrest Date</label>
-              <input type="date" required max={new Date().toISOString().split('T')[0]} className="w-full border border-border rounded-md p-2 focus:ring-1 focus:ring-navy focus:outline-none" value={formData.arrestDate} onChange={e => setFormData({...formData, arrestDate: e.target.value})} />
+              <label className="block text-sm font-medium text-slate-200 mb-1">Arrest Date</label>
+              <input type="date" required max={new Date().toISOString().split('T')[0]} className="w-full border border-slate-700 rounded-md p-2 bg-slate-950 text-slate-100 focus:ring-1 focus:ring-saffron focus:outline-none" value={formData.arrestDate} onChange={e => setFormData({...formData, arrestDate: e.target.value})} />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-text-primary mb-1">Section (IPC/BNS)</label>
-              <input type="text" required placeholder="e.g. IPC 420" className="w-full border border-border rounded-md p-2 focus:ring-1 focus:ring-navy focus:outline-none" value={formData.section} onChange={e => setFormData({...formData, section: e.target.value})} />
+              <label className="block text-sm font-medium text-slate-200 mb-1">Section (IPC/BNS)</label>
+              <input type="text" required placeholder="e.g. IPC 420" className="w-full border border-slate-700 rounded-md p-2 bg-slate-950 text-slate-100 focus:ring-1 focus:ring-saffron focus:outline-none" value={formData.section} onChange={e => setFormData({...formData, section: e.target.value})} />
             </div>
 
-            <div className="flex items-center justify-between py-2 border-b border-border">
-              <label className="text-sm font-medium text-text-primary">Is this a first offence?</label>
+            <div className="flex items-center justify-between py-2 border-b border-slate-800">
+              <label className="text-sm font-medium text-slate-200">Is this a first offence?</label>
               <div className="relative inline-block w-12 mr-2 align-middle select-none">
                 <input type="checkbox" className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-all duration-300" style={{ right: formData.isFirstOffence ? 0 : '1.5rem', borderColor: formData.isFirstOffence ? '#1a2744' : '#E2E0D8' }} checked={formData.isFirstOffence} onChange={e => setFormData({...formData, isFirstOffence: e.target.checked})} />
                 <label className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-all duration-300" style={{ backgroundColor: formData.isFirstOffence ? '#1a2744' : '#E2E0D8' }} onClick={() => setFormData({...formData, isFirstOffence: !formData.isFirstOffence})}></label>
               </div>
             </div>
 
-            <div className="flex items-center justify-between py-2 border-b border-border">
-              <label className="text-sm font-medium text-text-primary pr-4">Is this a capital offence? (Life/Death sentence)</label>
+            <div className="flex items-center justify-between py-2 border-b border-slate-800">
+              <label className="text-sm font-medium text-slate-200 pr-4">Is this a capital offence? (Life/Death sentence)</label>
               <div className="relative inline-block w-12 mr-2 align-middle select-none shrink-0">
                 <input type="checkbox" className="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-all duration-300" style={{ right: formData.isCapitalOffence ? 0 : '1.5rem', borderColor: formData.isCapitalOffence ? '#C62828' : '#E2E0D8' }} checked={formData.isCapitalOffence} onChange={e => setFormData({...formData, isCapitalOffence: e.target.checked})} />
                 <label className="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-all duration-300" style={{ backgroundColor: formData.isCapitalOffence ? '#C62828' : '#E2E0D8' }} onClick={() => setFormData({...formData, isCapitalOffence: !formData.isCapitalOffence})}></label>
@@ -76,8 +76,8 @@ export default function BailChecker() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-text-primary mb-1">State</label>
-              <select required className="w-full border border-border rounded-md p-2 focus:ring-1 focus:ring-navy focus:outline-none bg-white" value={formData.state} onChange={e => setFormData({...formData, state: e.target.value})}>
+              <label className="block text-sm font-medium text-slate-200 mb-1">State</label>
+              <select required className="w-full border border-slate-700 rounded-md p-2 bg-slate-950 text-slate-100 focus:ring-1 focus:ring-saffron focus:outline-none" value={formData.state} onChange={e => setFormData({...formData, state: e.target.value})}>
                 <option value="">Select State...</option>
                 {statesList.map(s => <option key={s} value={s}>{s}</option>)}
               </select>
@@ -95,7 +95,7 @@ export default function BailChecker() {
 
         <div>
           {!result ? (
-            <div className="bg-white border border-border rounded-xl p-10 flex flex-col items-center justify-center h-full min-h-[400px] text-center shadow-sm">
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-10 flex flex-col items-center justify-center h-full min-h-[400px] text-center shadow-sm">
               <span className="text-6xl text-gray-300 mb-4">⚖️</span>
               <p className="text-text-secondary font-medium mb-6">Fill the details above to check eligibility</p>
               <div className="flex gap-2">
@@ -116,7 +116,7 @@ export default function BailChecker() {
                   <h3 className="font-bold text-lg">Not Eligible Yet</h3>
                 </div>
               ) : (
-                <div className="bg-gray-700 text-white p-4 flex items-center gap-3">
+                <div className="bg-slate-800 text-white p-4 flex items-center gap-3">
                   <span className="text-2xl">ℹ️</span>
                   <h3 className="font-bold text-lg">Information Not Available</h3>
                 </div>
@@ -135,30 +135,30 @@ export default function BailChecker() {
                   </div>
                 )}
 
-                <table className="w-full text-sm mb-6 border-collapse">
+                <table className="w-full text-sm mb-6 border-collapse text-slate-100">
                   <tbody>
-                    <tr className="border-b border-gray-100">
-                      <td className="py-3 text-text-secondary">Section</td>
+                    <tr className="border-b border-slate-800">
+                      <td className="py-3 text-slate-400">Section</td>
                       <td className="py-3 font-medium text-right">{result.section}</td>
                     </tr>
-                    <tr className="bg-gray-50 border-b border-gray-100">
-                      <td className="py-3 px-2 text-text-secondary">Maximum Sentence</td>
+                    <tr className="bg-slate-900 border-b border-slate-800">
+                      <td className="py-3 px-2 text-slate-400">Maximum Sentence</td>
                       <td className="py-3 px-2 font-medium text-right">{result.maxSentenceYears !== undefined && result.maxSentenceYears !== Infinity ? `${result.maxSentenceYears} years` : 'N/A'}</td>
                     </tr>
-                    <tr className="border-b border-gray-100">
-                      <td className="py-3 text-text-secondary">First Offence</td>
+                    <tr className="border-b border-slate-800">
+                      <td className="py-3 text-slate-400">First Offence</td>
                       <td className="py-3 font-medium text-right">{formData.isFirstOffence ? 'Yes' : 'No'}</td>
                     </tr>
-                    <tr className="bg-gray-50 border-b border-gray-100">
-                      <td className="py-3 px-2 text-text-secondary">Required Time</td>
+                    <tr className="bg-slate-900 border-b border-slate-800">
+                      <td className="py-3 px-2 text-slate-400">Required Time</td>
                       <td className="py-3 px-2 font-medium text-right">{result.monthsRequired !== undefined ? `${result.monthsRequired} months` : 'N/A'}</td>
                     </tr>
-                    <tr className="border-b border-gray-100">
-                      <td className="py-3 text-text-secondary">Time Served</td>
+                    <tr className="border-b border-slate-800">
+                      <td className="py-3 text-slate-400">Time Served</td>
                       <td className="py-3 font-medium text-right">{result.monthsServed !== undefined ? `${result.monthsServed} months` : 'N/A'}</td>
                     </tr>
                     <tr>
-                      <td className="py-3 text-text-secondary font-bold">Status</td>
+                      <td className="py-3 text-slate-400 font-bold">Status</td>
                       <td className={`py-3 font-bold text-right ${result.eligible ? 'text-green-success' : 'text-red-danger'}`}>
                         {result.eligible === true ? '✓ Eligible' : result.eligible === false ? '✕ Not Eligible' : 'Unknown'}
                       </td>
@@ -166,7 +166,7 @@ export default function BailChecker() {
                   </tbody>
                 </table>
 
-                <div className="bg-[#FFFDE7] border border-[#FFF59D] p-3 rounded-md text-xs text-gray-700 mb-6">
+                <div className="bg-slate-900 border border-slate-700 p-3 rounded-md text-xs text-slate-300 mb-6">
                   {result.disclaimer}
                 </div>
 
