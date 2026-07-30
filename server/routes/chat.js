@@ -1,15 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const Groq = require('groq-sdk');
+const client = require('../ai');
 const { LEGALBOT_PROMPT } = require('../prompts/legalbot');
-
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY || process.env.GROK_API_KEY,
-});
 
 router.post('/', async (req, res) => {
   const { message, language = 'english', history = [] } = req.body;
-  
+
+  if (!process.env.OPENROUTER_API_KEY) {
+    console.error('Chat API Error: missing OpenRouter API key');
+    return res.status(500).json({
+      reply: "The AI service is not configured correctly. Please contact the administrator."
+    });
+  }
+
   const systemPrompt = LEGALBOT_PROMPT.replace('{{LANGUAGE}}', language);
   const messages = [
     { role: "system", content: systemPrompt },
@@ -18,18 +21,22 @@ router.post('/', async (req, res) => {
   ];
 
   try {
-    const chatCompletion = await groq.chat.completions.create({
+    const chatCompletion = await client.chat.completions.create({
+      model: process.env.OPENROUTER_MODEL || 'openai/gpt-4o-mini',
       messages: messages,
-      model: process.env.GROQ_MODEL || process.env.GROK_MODEL || "llama-3.3-70b-versatile",
       temperature: 0.3,
       max_tokens: 600,
     });
 
     const reply = chatCompletion.choices[0]?.message?.content || "";
-    res.json({ reply });
+    return res.json({ reply });
   } catch (error) {
-    console.error('Chat API Error:', error.message);
-    res.status(500).json({ reply: "I apologize, the server is currently busy. Please call NALSA helpline at 15100." });
+    const errorMessage = error?.status === 401 || error?.code === 'invalid_api_key' || error?.message?.includes('Invalid API Key')
+      ? "The OpenRouter API key is invalid or expired. Please update the server configuration."
+      : "I apologize, the server is currently busy. Please call NALSA helpline at 15100.";
+
+    console.error('Chat API Error:', error?.message || error);
+    return res.status(error?.status || 500).json({ reply: errorMessage });
   }
 });
 
